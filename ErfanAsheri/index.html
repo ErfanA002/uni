@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>erfan asheri</title>
+  <style>
+  </style>
+</head>
+<body>
+  <h1>erfan asheri sama tehransar karshenasi azmayeshghah zabanhaye barnamenevisi ostad darvish</h1>
+  <input type="text" id="nameInput" placeholder="نام">
+  <input type="number" id="ageInput" placeholder="سن">
+  <input type="number" id="scoreInput1" placeholder="نمره 1">
+  <input type="number" id="scoreInput2" placeholder="نمره 2">
+  <input type="number" id="scoreInput3" placeholder="نمره 3">
+  <input type="number" id="scoreInput4" placeholder="نمره 4">
+  <button type="submit">ارسال</button>
+  <ul></ul>
+  <script>
+    const nameInput = document.querySelector('#nameInput');
+    const ageInput = document.querySelector('#ageInput');
+    const scoreInputs = [
+      document.querySelector('#scoreInput1'),
+      document.querySelector('#scoreInput2'),
+      document.querySelector('#scoreInput3'),
+      document.querySelector('#scoreInput4')
+    ];
+    const list = document.querySelector('ul');
+    const btmSub = document.querySelector('button');
+
+    btmSub.addEventListener('click', () => {
+      const name = nameInput.value;
+      const age = ageInput.value;
+      const scores = scoreInputs.map(input => input.value);
+
+      // مرتب‌سازی حبابی نمرات
+      function bubbleSort(arr) {
+        for (let i = 0; i < arr.length - 1; i++) {
+          for (let j = 0; j < arr.length - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+              [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+            }
+          }
+        }
+        return arr;
+      }
+
+      const sortedScores = bubbleSort(scores);
+
+      list.innerHTML = `
+        <li>نام: ${name}</li>
+        <li>سن: ${age}</li>
+        <li>نمرات</li>
+        ${sortedScores.map(score => `<li>${score}</li>`).join('')}
+      `;
+    });
+  </script>
+</body>
+</html>
